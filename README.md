@@ -1,6 +1,14 @@
 # adsw2016-2
 Analysis and Software Design - Course Project - USM
 
+Group:
+
+Benjamín Meneses
+
+Alonso Rodríguez
+
+Saulo Bernal
+
 # Installation
 -Make sure you have installed node.js and mysql server on you pc.
 
