@@ -1,7 +1,7 @@
 # adsw2016-2
 Analysis and Software Design - Course Project - USM
 
-Group:
+**Group:**
 
 Benjamín Meneses - System Use Designer and Modeling
 
