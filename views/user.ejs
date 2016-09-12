@@ -1,4 +1,4 @@
-<%- include layouts/user_header.ejs %>
+<%- include layouts/admin_header.ejs %>
 
            <a href="/contact/add" class="btn btn-default"><span class="fa fa-user"></span> + Add</a>
          <div>
@@ -7,8 +7,8 @@
                     <th width="50px">No</th>
                     <th>Name</th>
                     <th>Last Name</th>
-                    <th>Phone</th>
-                    <th>To Call</th>
+                    <th>Username</th>
+                    <th>Password</th>
                     <th>Action</th>
                 </tr>
                                
@@ -20,14 +20,12 @@
                     <td><%=(i+1)%></td>
                     <td><%=data[i].name%></td>
                     <td><%=data[i].last_name%></td>
-                    <td><%=data[i].phone%></td>
-                    <td><%=data[i].to_call%></td>
+                    <td><%=data[i].username%></td>
+                    <td><%=data[i].password%></td>
                     <td>
-                        <a class="btn btn-warning btn-xs a-inside edit" href="../contact/edit/<%=data[i].phone%>">Edit</a>
+                        <a class="btn btn-warning btn-xs a-inside edit" href="../contact/edit/<%=data[i].username%>">Edit</a>
                        
-                        <a class="btn btn-danger btn-xs a-inside delete" href="../contact/delete/<%=data[i].phone%>">Delete</a>
-
-                        <a class="btn btn-success btn-xs a-inside delete" href="">Call</a>
+                        <a class="btn btn-danger btn-xs a-inside delete" href="../contact/delete/<%=data[i].username%>">Delete</a>
                        
                     </td>
                 </tr>

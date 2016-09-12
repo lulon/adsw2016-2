@@ -1,8 +1,8 @@
-<%- include layouts/user_header.ejs %>
+<%- include layouts/admin_header.ejs %>
 
         <div class="page-data">
             
-            <form method="post" action="/contact/add">
+            <form method="post" action="/user/add">
                 <table cellpadding="11">
                 <tr>
                     <td class="label">Name</td><td>: <input type="text" name="name" required></td>
@@ -11,16 +11,16 @@
                     <td class="label">Last Name</td><td>: <input type="text" name="last_name" required></td>
                 </tr>
                 <tr>
-                    <td class="label">Phone</td><td>: <input type="text" name="phone" required></td>
+                    <td class="label">Username</td><td>: <input type="text" name="username" required></td>
                  </tr>
-                  <tr>
-                    <td class="label">To Call</td><td>: <select name="to_call"><option value="yes">Yes</option><option value="no">No</option></select> </td>
-                 </tr>
+                <tr>
+                    <td class="label">Password</td><td>: <input type="password" name="password" required></td>
+                 </tr>                
                  <tr>
                     <td class="label"></td>
                     <td>
                         &nbsp; <input type="submit" name="submit" value="Save">
-                       <input type="button" name="cancel" value="Cancel" class="cancel" onclick="window.location.href='/contact'">
+                       <input type="button" name="cancel" value="Cancel" class="cancel" onclick="window.location.href='/user'">
                     </td>
                  </tr>
                 </table>
