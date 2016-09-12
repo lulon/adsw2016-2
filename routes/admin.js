@@ -1,50 +1,47 @@
 exports.list = function(req, res){
 
-    if(req.app.isUserLogged){
+  if(req.app.isAdminLogged){    
     req.getConnection(function(err,connection){
-         
-          var query = connection.query('SELECT * FROM contact',function(err,rows)
-          {
-              
-              if(err)
-                  console.log("Error Selecting : %s ",err );
-       
-              res.render('contact',{page_title:"Contacts",data:rows});
-                  
-             
-           });
            
-           //console.log(query.sql);
-      });
+            var query = connection.query('SELECT * FROM user',function(err,rows)
+            {
+                
+                if(err)
+                    console.log("Error Selecting : %s ",err );
+         
+                res.render('user',{page_title:"Users",data:rows});
+                    
+               
+             });
+             
+             //console.log(query.sql);
+        });
     }
-    else res.redirect('/bad_login');
-  
+    else res.redirect('/bad_login');  
 };
 
 exports.add = function(req, res){
-    var isUserLogged = req.app.get('isUserLogged');
 
-    if(isUserLogged){
-  res.render('add_contact',{page_title:"Add Contacts"});
+  if(req.app.isAdminLogged){ 
+    res.render('add_user',{page_title:"Add Users"});
     }
     else res.redirect('/bad_login');
 };
 
 exports.edit = function(req, res){
-    var isUserLogged = req.app.get('isUserLogged');
-
-    if(isUserLogged){    
-    var phone = req.params.phone;
+  
+  if(req.app.isAdminLogged){   
+    var username = req.params.username;
     
     req.getConnection(function(err,connection){
        
-        var query = connection.query('SELECT * FROM contact WHERE phone = ?',[phone],function(err,rows)
+        var query = connection.query('SELECT * FROM user WHERE username = ?',[username],function(err,rows)
         {
             
             if(err)
                 console.log("Error Selecting : %s ",err );
      
-            res.render('edit_contact',{page_title:"Edit Contacts",data:rows});
+            res.render('edit_user',{page_title:"Edit Users",data:rows});
                 
            
          });
@@ -57,9 +54,8 @@ exports.edit = function(req, res){
 
 
 exports.save = function(req,res){
-    var isUserLogged = req.app.get('isUserLogged');
-
-    if(isUserLogged){
+    
+  if(req.app.isAdminLogged){ 
     var input = JSON.parse(JSON.stringify(req.body));
     
     req.getConnection(function (err, connection) {
@@ -68,18 +64,18 @@ exports.save = function(req,res){
             
             name    : input.name,
             last_name : input.last_name,
-            phone   : input.phone,
-            to_call   : input.to_call 
+            username   : input.username,
+            password   : input.password 
         
         };
         
-        var query = connection.query("INSERT INTO contact set ? ",data, function(err, rows)
+        var query = connection.query("INSERT INTO user set ? ",data, function(err, rows)
         {
   
           if (err)
               console.log("Error inserting : %s ",err );
          
-          res.redirect('/contact');
+          res.redirect('/user');
           
         });
         
@@ -91,12 +87,10 @@ exports.save = function(req,res){
 };
 
 exports.save_edit = function(req,res){
-    var isUserLogged = req.app.get('isUserLogged');
 
-    if(isUserLogged){
-    
+  if(req.app.isAdminLogged){     
     var input = JSON.parse(JSON.stringify(req.body));
-    var phone = req.params.phone;
+    var username = req.params.username;
     
     req.getConnection(function (err, connection) {
         
@@ -104,18 +98,18 @@ exports.save_edit = function(req,res){
             
             name    : input.name,
             last_name : input.last_name,
-            phone   : input.phone,
-            to_call   : input.to_call 
+            username   : input.username,
+            password   : input.password 
         
         };
         
-        connection.query("UPDATE contact set ? WHERE phone = ? ",[data,phone], function(err, rows)
+        connection.query("UPDATE user set ? WHERE username = ? ",[data,username], function(err, rows)
         {
   
           if (err)
               console.log("Error Updating : %s ",err );
          
-          res.redirect('/contact');
+          res.redirect('/user');
           
         });
     
@@ -126,21 +120,19 @@ exports.save_edit = function(req,res){
 
 
 exports.delete_customer = function(req,res){
-    var isUserLogged = req.app.get('isUserLogged');
 
-    if(isUserLogged){
-          
-     var phone = req.params.phone;
+  if(req.app.isAdminLogged){           
+     var username = req.params.username;
     
      req.getConnection(function (err, connection) {
         
-        connection.query("DELETE FROM contact WHERE phone = ? ",[phone], function(err, rows)
+        connection.query("DELETE FROM user WHERE username = ? ",[username], function(err, rows)
         {
             
              if(err)
                  console.log("Error deleting : %s ",err );
             
-             res.redirect('/contact');
+             res.redirect('/user');
              
         });
         
