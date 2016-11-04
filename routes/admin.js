@@ -42,7 +42,7 @@ exports.save = function(req,res){
         
         };
         
-        var query = connection.query("INSERT INTO user set ? ",data, function(err, rows)
+        var query = connection.query("INSERT INTO user SET ? ",data, function(err, rows)
         {
   
           if (err)
@@ -119,7 +119,7 @@ exports.save_edit = function(req,res){
 
 
 //Borrar usuario.
-exports.delete_customer = function(req,res){
+exports.delete_user = function(req,res){
 
   if(req.app.isAdminLogged){           
      var username = req.params.username;

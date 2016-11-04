@@ -5,7 +5,8 @@ var path = require('path');
 
 var contact = require('./routes/contact'); 
 var users = require('./routes/users');
-var admin = require('./routes/admin')
+var admin = require('./routes/admin');
+var quiz = require('./routes/quiz');
 var app = express();
 var flash = require('connect-flash');
 
@@ -60,7 +61,7 @@ app.post('/contact/edit/:phone',contact.save_edit);
 app.get('/user', admin.list);
 app.get('/user/add', admin.add);
 app.post('/user/add', admin.save);
-app.get('/user/delete/:username', admin.delete_customer);
+app.get('/user/delete/:username', admin.delete_user);
 app.get('/user/edit/:username', admin.edit);
 app.post('/user/edit/:username',admin.save_edit);
 app.get('/user_logout', users.user_logout);
@@ -70,6 +71,7 @@ app.get('/admin_login', users.admin_login);
 app.get('/bad_login', users.bad_login);
 app.post('/admin_login_handler', users.admin_login_handler);
 app.post('/user_login_handler', users.user_login_handler);
+app.get('/quiz', quiz.list);
 
 app.use(app.router);
 

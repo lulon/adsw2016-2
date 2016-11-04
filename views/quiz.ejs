@@ -1,0 +1,31 @@
+<%- include layouts/admin_header.ejs %>
+		<h1>QUIZ REGISTERED IN SYSTEM</h1>
+		 <a href="/quiz/add" class="btn btn-primary"><span class="fa fa-user"></span> + Add</a>
+            <table class="table">
+                <tr>
+                    <th width="50px">No</th>
+                    <th>Name</th>
+                    <th>URL</th>
+                </tr>
+                               
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+                    <td><%=(i+1)%></td>
+                    <td><%=data[i].name%></td>
+                    <td><%=data[i].link%></td>
+                        <a class="btn btn-danger btn-xs a-inside delete" href="../user/delete/<%=data[i].username%>">Delete</a>
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="3">No contacts to call</td>
+                 </tr>
+            <% } %>
+                              
+            </table>
+        
+<%- include layouts/footer.ejs %>
