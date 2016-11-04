@@ -1,6 +1,6 @@
 exports.list = function(req, res){
 
-    if(req.app.isUserLogged){
+    if(req.app.isUserLogged || req.app.isAdminLogged){
     req.getConnection(function(err,connection){
          
           var query = connection.query('SELECT * FROM contact',function(err,rows)
@@ -20,12 +20,12 @@ exports.list = function(req, res){
     else res.redirect('/bad_login');
   
 };
-
+//Vista agregar contactos.
 exports.add = function(req, res){
-    var isUserLogged = req.app.get('isUserLogged');
+    var isAdminLogged = req.app.get('isAdminLogged');
 
-    if(isUserLogged){
-  res.render('add_contact',{page_title:"Add Contacts"});
+    if(req.app.isAdminLogged){
+      res.render('add_contact',{page_title:"Add Contacts"});
     }
     else res.redirect('/bad_login');
 };

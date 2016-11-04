@@ -1,8 +1,7 @@
 <%- include layouts/admin_header.ejs %>
-
-           <a href="/contact/add" class="btn btn-default"><span class="fa fa-user"></span> + Add</a>
-         <div>
-            <table class="table" border="1" cellpadding="7" cellspacing="7">
+            <h1>USERS REGISTERED IN SYSTEM </h1>
+            <a href="/user/add" class="btn btn-primary"><span class="fa fa-user"></span> + Add</a>
+            <table class="table">
                 <tr>
                     <th width="50px">No</th>
                     <th>Name</th>
@@ -36,10 +35,7 @@
                     <td colspan="3">No contacts to call</td>
                  </tr>
             <% } %>
-                
                               
-                
             </table>
-         </div>
         
 <%- include layouts/footer.ejs %>

@@ -1,5 +1,5 @@
+//Vista lista de usuarios.
 exports.list = function(req, res){
-
   if(req.app.isAdminLogged){    
     req.getConnection(function(err,connection){
            
@@ -11,50 +11,23 @@ exports.list = function(req, res){
          
                 res.render('user',{page_title:"Users",data:rows});
                     
-               
              });
-             
              //console.log(query.sql);
         });
     }
     else res.redirect('/bad_login');  
 };
 
+//Vista agregar usuario.
 exports.add = function(req, res){
-
   if(req.app.isAdminLogged){ 
     res.render('add_user',{page_title:"Add Users"});
     }
     else res.redirect('/bad_login');
 };
 
-exports.edit = function(req, res){
-  
-  if(req.app.isAdminLogged){   
-    var username = req.params.username;
-    
-    req.getConnection(function(err,connection){
-       
-        var query = connection.query('SELECT * FROM user WHERE username = ?',[username],function(err,rows)
-        {
-            
-            if(err)
-                console.log("Error Selecting : %s ",err );
-     
-            res.render('edit_user',{page_title:"Edit Users",data:rows});
-                
-           
-         });
-         
-         //console.log(query.sql);
-    }); 
-    }
-    else res.redirect('/bad_login');
-};
-
-
+//Logica agregar usuario.
 exports.save = function(req,res){
-    
   if(req.app.isAdminLogged){ 
     var input = JSON.parse(JSON.stringify(req.body));
     
@@ -86,6 +59,32 @@ exports.save = function(req,res){
     else res.redirect('/bad_login');
 };
 
+//Vista editar usuario.
+exports.edit = function(req, res){
+  
+  if(req.app.isAdminLogged){   
+    var username = req.params.username;
+    
+    req.getConnection(function(err,connection){
+       
+        var query = connection.query('SELECT * FROM user WHERE username = ?',[username],function(err,rows)
+        {
+            
+            if(err)
+                console.log("Error Selecting : %s ",err );
+     
+            res.render('edit_user',{page_title:"Edit Users",data:rows});
+                
+           
+         });
+         
+         //console.log(query.sql);
+    }); 
+    }
+    else res.redirect('/bad_login');
+};
+
+//Logica editar usuario.
 exports.save_edit = function(req,res){
 
   if(req.app.isAdminLogged){     
@@ -119,6 +118,7 @@ exports.save_edit = function(req,res){
 };
 
 
+//Borrar usuario.
 exports.delete_customer = function(req,res){
 
   if(req.app.isAdminLogged){           
