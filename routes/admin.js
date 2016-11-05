@@ -1,6 +1,6 @@
 //Vista lista de usuarios.
 exports.list = function(req, res){
-  if(req.app.isAdminLogged){    
+  if(req.session.isAdminLogged){
     req.getConnection(function(err,connection){
            
             var query = connection.query('SELECT * FROM user',function(err,rows)
@@ -20,7 +20,7 @@ exports.list = function(req, res){
 
 //Vista agregar usuario.
 exports.add = function(req, res){
-  if(req.app.isAdminLogged){ 
+  if(req.session.isAdminLogged){
     res.render('add_user',{page_title:"Add Users"});
     }
     else res.redirect('/bad_login');
@@ -28,7 +28,7 @@ exports.add = function(req, res){
 
 //Logica agregar usuario.
 exports.save = function(req,res){
-  if(req.app.isAdminLogged){ 
+  if(req.session.isAdminLogged){
     var input = JSON.parse(JSON.stringify(req.body));
     
     req.getConnection(function (err, connection) {
@@ -62,7 +62,7 @@ exports.save = function(req,res){
 //Vista editar usuario.
 exports.edit = function(req, res){
   
-  if(req.app.isAdminLogged){   
+  if(req.session.isAdminLogged){
     var username = req.params.username;
     
     req.getConnection(function(err,connection){
@@ -87,7 +87,7 @@ exports.edit = function(req, res){
 //Logica editar usuario.
 exports.save_edit = function(req,res){
 
-  if(req.app.isAdminLogged){     
+  if(req.session.isAdminLogged){
     var input = JSON.parse(JSON.stringify(req.body));
     var username = req.params.username;
     
@@ -121,7 +121,7 @@ exports.save_edit = function(req,res){
 //Borrar usuario.
 exports.delete_user = function(req,res){
 
-  if(req.app.isAdminLogged){           
+  if(req.session.isAdminLogged){
      var username = req.params.username;
     
      req.getConnection(function (err, connection) {

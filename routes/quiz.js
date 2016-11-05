@@ -1,6 +1,6 @@
 //Vista mostrar quiz
 exports.list = function(req, res){
-  if(req.app.isAdminLogged){    
+  if(req.session.isAdminLogged){
     req.getConnection(function(err,connection){
            
             var query = connection.query('SELECT * FROM quiz',function(err,rows)
@@ -18,7 +18,7 @@ exports.list = function(req, res){
 
 //Vista agregar usuario.
 exports.add = function(req,res){
-	if(req.app.isAdminLogged){
+	if(req.session.isAdminLogged){
 		res.render('add_quiz',{page_title:"Add Quiz"});
 	}
 	else res.redirect('/bad_login');
@@ -27,7 +27,7 @@ exports.add = function(req,res){
 
 //Logica agregar usuario.
 exports.save = function(req,res){
-	if(req.app.isAdminLogged){
+	if(req.session.isAdminLogged){
 		var input = JSON.parse(JSON.stringify(req.body))
 
 		req.getConnection(function (err, connection){
@@ -48,7 +48,7 @@ exports.save = function(req,res){
 
 //Logica borrar encuesta.
 exports.delete_quiz = function(req,res){
-	if(req.app.isAdminLogged){
+	if(req.session.isAdminLogged){
 		var name = req.params.name;
 		req.getConnection(function(err, connection){
 			connection.query("DELETE FROM quiz WHERE name = ? ",[name], function(err,rows){
