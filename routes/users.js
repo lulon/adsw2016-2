@@ -42,7 +42,7 @@ exports.user_login_handler = function(req, res){
               
               if(rows.length == 1){
               	req.session.isUserLogged = true;
-              	res.redirect('/');
+              	res.redirect('/proyect');
               }
                        
              
@@ -80,4 +80,6 @@ exports.admin_login_handler = function(req, res){
            //console.log(query.sql);
       });
   
-};27
+};
+
+

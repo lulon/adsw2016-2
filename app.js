@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(flash());
+// Variables de sesión
 app.use(express.cookieParser('isLogged'));
 app.use(express.cookieSession());
 
@@ -53,7 +54,7 @@ app.get('/', routes.index);
 
 //Call
 app.get('/call/:proyectname', call.start_surveys);
-app.get('/call/save/:contact/:quiz/:duration/:status',call.save)
+//app.get('/call/save/:contact/:quiz/:duration/:status',call.save)
 
 //Contacts
 app.get('/contact', contact.list);
