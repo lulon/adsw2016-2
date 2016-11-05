@@ -83,6 +83,12 @@ app.post('/quiz/add', quiz.save);
 app.get('/quiz/disable/:idquiz/:activated', quiz.disable_quiz);
 app.get('/quiz/delete/:idquiz', quiz.delete_quiz);
 
+//Proyects
+app.get('/proyect', proyect.list);
+app.get('/proyect/add', proyect.add);
+app.post('/proyect/add', proyect.save);
+app.get('/proyect/delete/:idproyect', proyect.delete_proyect);
+
 app.use(app.router);
 
 http.createServer(app).listen(app.get('port'), function(){

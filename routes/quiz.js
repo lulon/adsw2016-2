@@ -64,7 +64,7 @@ exports.disable_quiz = function(req,res){
 //Logica borrar encuesta.
 exports.delete_quiz = function(req,res){
 	if(req.session.isAdminLogged){
-		var name = req.params.name;
+		var idquiz = req.params.idquiz;
 		req.getConnection(function(err, connection){
 			connection.query("DELETE FROM quiz WHERE idquiz = ? ",[idquiz], function(err,rows){
 				if(err)
