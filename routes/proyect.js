@@ -1,13 +1,19 @@
 //Vista lista de proyectos.
 exports.list = function(req, res){
-	if(req.session.isAdminLogged){
+	if(req.session.isUserLogged){
+		var view = 'user_indx';
+	}
+	 else if(req.session.isAdminLogged){
+		var view = 'proyect';
+	}
+	if(req.session.isAdminLogged || req.session.isUserLogged){
      	req.getConnection(function(err,connection){
          
         	var query = connection.query('SELECT * FROM proyect',function(err,rows)
         	{
             	if(err)
             	    console.log("Error Selecting : %s ",err );
-            	res.render('proyect',{page_title:"Proyects",data:rows});                            
+            	res.render(view,{page_title:"Projects",data:rows});
        		});
            
            //console.log(query.sql);
