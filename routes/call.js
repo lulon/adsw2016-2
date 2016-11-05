@@ -26,7 +26,7 @@ exports.start_surveys = function(req, res){
 
 		req.getConnection(function (err, connection) {
 
-			connection.query("SELECT * FROM contact WHERE NOT EXISTS (SELECT idcontact FROM `call` WHERE idquiz = 2) ORDER BY RAND() LIMIT 1", [req.session.quizes[rand].idquiz], function(err, rows)
+			connection.query("SELECT * FROM contact WHERE NOT EXISTS (SELECT idcontact FROM `call` WHERE idquiz = ?) ORDER BY RAND() LIMIT 1", [req.session.quizes[rand].idquiz], function(err, rows)
 				{
 					if(err)
 		                console.log("Error : %s ", err);
