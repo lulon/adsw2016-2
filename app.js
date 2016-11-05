@@ -7,6 +7,8 @@ var contact = require('./routes/contact');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
 var quiz = require('./routes/quiz');
+var call = require('./routes/call');
+var proyect = require('./routes/proyect');
 var app = express();
 var flash = require('connect-flash');
 
