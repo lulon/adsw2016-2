@@ -12,12 +12,12 @@ exports.admin_login = function(req, res){
 };
 
 exports.user_logout = function(req, res){
-	res.app.isUserLogged = false;
+	req.session.isUserLogged = false;
 	res.redirect('/');
 };
 
 exports.admin_logout = function(req, res){
-	res.app.isAdminLogged = false;
+	req.session.isAdminLogged = false;
 	res.redirect('/');
 };
 
@@ -41,7 +41,7 @@ exports.user_login_handler = function(req, res){
                   console.log("Error Selecting : %s ",err );
               
               if(rows.length == 1){
-              	res.app.isUserLogged = true;
+              	req.session.isUserLogged = true;
               	res.redirect('/contact');
               }
                        
@@ -73,7 +73,7 @@ exports.admin_login_handler = function(req, res){
                   console.log("Error Selecting : %s ",err );
               
               if(rows.length == 1){
-              	res.app.isAdminLogged = true;
+              	req.session.isAdminLogged = true;
               	res.redirect('/user');
               }           });
            

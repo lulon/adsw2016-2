@@ -10,11 +10,8 @@ var quiz = require('./routes/quiz');
 var app = express();
 var flash = require('connect-flash');
 
-var connection  = require('express-myconnection'); 
+var connection  = require('express-myconnection');
 var mysql = require('mysql');
-
-var isUserLogged = false;
-var isAdminLogged = false;
 
 // all environments
 app.set('port', process.env.PORT || 4300);
@@ -25,15 +22,14 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(flash());
+app.use(express.cookieParser('isLogged'));
+app.use(express.cookieSession());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-app.use(isUserLogged);
-app.use(isAdminLogged);
 
 app.use(
     

@@ -1,7 +1,7 @@
 exports.list = function(req, res){
 
-    if(req.app.isUserLogged || req.app.isAdminLogged){
-    req.getConnection(function(err,connection){
+    if(req.session.isUserLogged || req.session.isAdminLogged){
+      req.getConnection(function(err,connection){
          
           var query = connection.query('SELECT * FROM contact',function(err,rows)
           {
@@ -24,14 +24,14 @@ exports.list = function(req, res){
 exports.add = function(req, res){
     var isAdminLogged = req.app.get('isAdminLogged');
 
-    if(req.app.isAdminLogged){
+    if(req.session.isAdminLogged){
       res.render('add_contact',{page_title:"Add Contacts"});
     }
     else res.redirect('/bad_login');
 };
 
 exports.edit = function(req, res){
-    var isUserLogged = req.app.get('isUserLogged');
+    var isUserLogged = req.session.isUserLogged;
 
     if(isUserLogged){    
     var phone = req.params.phone;
@@ -57,7 +57,7 @@ exports.edit = function(req, res){
 
 
 exports.save = function(req,res){
-    var isUserLogged = req.app.get('isUserLogged');
+    var isUserLogged = req.session.isUserLogged;;
 
     if(isUserLogged){
     var input = JSON.parse(JSON.stringify(req.body));
@@ -91,9 +91,9 @@ exports.save = function(req,res){
 };
 
 exports.save_edit = function(req,res){
-    var isUserLogged = req.app.get('isUserLogged');
 
-    if(isUserLogged){
+
+    if(req.session.isUserLogged){
     
     var input = JSON.parse(JSON.stringify(req.body));
     var phone = req.params.phone;
@@ -126,9 +126,9 @@ exports.save_edit = function(req,res){
 
 
 exports.delete_customer = function(req,res){
-    var isUserLogged = req.app.get('isUserLogged');
+    var isUserLogged = req.session.isUserLogged;;
 
-    if(isUserLogged){
+    if(req.session.isUserLogged){
           
      var phone = req.params.phone;
     
