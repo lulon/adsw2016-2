@@ -52,12 +52,16 @@ app.use(
 
 
 app.get('/', routes.index);
+
+//Contacts
 app.get('/contact', contact.list);
 app.get('/contact/add', contact.add);
 app.post('/contact/add', contact.save);
 app.get('/contact/delete/:phone', contact.delete_customer);
 app.get('/contact/edit/:phone', contact.edit);
 app.post('/contact/edit/:phone',contact.save_edit);
+
+//Users
 app.get('/user', admin.list);
 app.get('/user/add', admin.add);
 app.post('/user/add', admin.save);
@@ -71,6 +75,8 @@ app.get('/admin_login', users.admin_login);
 app.get('/bad_login', users.bad_login);
 app.post('/admin_login_handler', users.admin_login_handler);
 app.post('/user_login_handler', users.user_login_handler);
+
+//Quizes
 app.get('/quiz', quiz.list);
 app.get('/quiz/add', quiz.add);
 app.post('/quiz/add', quiz.save);
