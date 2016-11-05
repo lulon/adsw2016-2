@@ -47,7 +47,7 @@ exports.save = function(req,res){
 };
 
 exports.disable_quiz = function(req,res){
-	if(req.app.isAdminLogged){
+	if(req.session.isAdminLogged){
 		var idquiz = req.params.idquiz;
 		var activated = req.params.activated;
 		req.getConnection(function(err, connection){

@@ -1,6 +1,6 @@
 exports.list = function(req, res){
 
-    if(req.session.isUserLogged || req.session.isAdminLogged){
+    if(req.session.isAdminLogged){
       req.getConnection(function(err,connection){
          
           var query = connection.query('SELECT * FROM contact',function(err,rows)
@@ -31,9 +31,9 @@ exports.add = function(req, res){
 };
 
 exports.edit = function(req, res){
-    var isUserLogged = req.session.isUserLogged;
+    var isAdminLogged = req.session.isAdminLogged;
 
-    if(isUserLogged){    
+    if(isAdminLogged){    
     var phone = req.params.phone;
     
     req.getConnection(function(err,connection){
@@ -57,18 +57,18 @@ exports.edit = function(req, res){
 
 
 exports.save = function(req,res){
-    var isUserLogged = req.session.isUserLogged;;
+    var isAdminLogged = req.session.isAdminLogged;;
 
-    if(isUserLogged){
+    if(isAdminLogged){
     var input = JSON.parse(JSON.stringify(req.body));
     
     req.getConnection(function (err, connection) {
         
         var data = {
             
-            name    : input.name,
+            name      : input.name,
             last_name : input.last_name,
-            phone   : input.phone,
+            phone     : input.phone,
             to_call   : input.to_call 
         
         };
@@ -93,7 +93,7 @@ exports.save = function(req,res){
 exports.save_edit = function(req,res){
 
 
-    if(req.session.isUserLogged){
+    if(req.session.isAdminLogged){
     
     var input = JSON.parse(JSON.stringify(req.body));
     var phone = req.params.phone;
@@ -126,9 +126,9 @@ exports.save_edit = function(req,res){
 
 
 exports.delete_customer = function(req,res){
-    var isUserLogged = req.session.isUserLogged;;
+    var isAdminLogged = req.session.isAdminLogged;;
 
-    if(req.session.isUserLogged){
+    if(req.session.isAdminLogged){
           
      var phone = req.params.phone;
     

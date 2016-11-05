@@ -1,6 +1,10 @@
-<%- include layouts/user_header.ejs %>
-
-           <a href="/contact/add" class="btn btn-default"><span class="fa fa-user"></span> + Add</a>
+<%- include layouts/admin_header.ejs %>
+        <div class ="col-md-4">
+            <h1>Contacts</h1>
+        </div>
+        <div class ="col-md-2 col-md-offset-4">
+        <a href="/contact/add" class="btn btn-default"><span class="fa fa-user"></span> + Add</a>
+        </div>
          <div clas="table-responsive">
             <table class="table">
                 <tr>
@@ -23,11 +27,9 @@
                     <td><%=data[i].phone%></td>
                     <td><%=data[i].to_call%></td>
                     <td>
-                        <a class="btn btn-warning btn-xs a-inside edit" href="../contact/edit/<%=data[i].phone%>">Edit</a>
-                       
-                        <a class="btn btn-danger btn-xs a-inside delete" href="../contact/delete/<%=data[i].phone%>">Delete</a>
-
-                        <a class="btn btn-success btn-xs a-inside delete" href="">Call</a>
+                            <a class="btn btn-warning btn-xs a-inside edit" href="../contact/edit/<%=data[i].phone%>">Edit</a>
+                           
+                            <a class="btn btn-danger btn-xs a-inside delete" href="../contact/delete/<%=data[i].phone%>">Delete</a>
                        
                     </td>
                 </tr>
@@ -43,5 +45,6 @@
                 
             </table>
          </div>
+         
         
 <%- include layouts/footer.ejs %>

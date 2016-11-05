@@ -42,7 +42,7 @@ exports.user_login_handler = function(req, res){
               
               if(rows.length == 1){
               	req.session.isUserLogged = true;
-              	res.redirect('/contact');
+              	res.redirect('/');
               }
                        
              

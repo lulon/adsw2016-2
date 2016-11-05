@@ -20,30 +20,42 @@
         .btn-primary{
             margin-bottom: 5px;
         }
+
+        .sidebar{
+          padding-top: 60px;
+        }
+
+        .main{
+          padding-top: 45px;
+        }
+        .col-md-offset-4{
+          padding-top: 20px;
+        }
     </style>
 </head>
 <body>
         
 <!--Barra superior ADMIN -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Logged as ADMIN</a>
+<div class="container">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Logged as ADMIN</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/admin_logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/admin_logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+  </nav>
+</div>
+<!--Barra Lateral ADMIN -->
+  <div class="col-md-2 sidebar ">
+    <ul>
+      <li><a href="/user" class="btn btn-default"><span class="fa fa-pencil-square"></span> Users CRUD</a></li>
+      <li><a href="/contact" class="btn btn-default"><span class="fa fa-list"></span> Add Contacts</a></li>
+      <li><a href="/quiz" class="btn btn-default"><span class="fa fa-clipboard"></span> Quiz CRUD</a></li>
+      <li><a href="/contact/add" class="btn btn-default"><span class="fa fa-bar-chart"></span> User Stats</a></li>
     </ul>
   </div>
-</nav>
-
-<!--Barra Lateral ADMIN -->
-<div class="col-md-2 sidebar ">
-  <ul>
-    <li><a href="/user" class="btn btn-default"><span class="fa fa-pencil-square"></span> Users CRUD</a></li>
-    <li><a href="/contact" class="btn btn-default"><span class="fa fa-list"></span> Add Contacts</a></li>
-    <li><a href="/quiz" class="btn btn-default"><span class="fa fa-clipboard"></span> Quiz CRUD</a></li>
-    <li><a href="/contact/add" class="btn btn-default"><span class="fa fa-bar-chart"></span> User Stats</a></li>
-  </ul>
-</div>
 
 <div class="col-md-8 main">
