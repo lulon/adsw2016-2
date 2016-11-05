@@ -5,7 +5,7 @@ exports.start_surveys = function(req, res){
 		var proyect = req.params.proyectname;
 		req.session.selected_proyect = proyect;
 
-		if(typeof req.session.quizes == 'undefined'){
+		if(typeof req.session.selected_quizes == 'undefined'){
 
 		    req.getConnection(function (err, connection) {
 
@@ -20,7 +20,7 @@ exports.start_surveys = function(req, res){
 		    });			
 		}
 
-		var rand = Math.floor(Math.random() * req.session.selected_quizes.length);
+		var rand = Math.floor(Math.random() * req.session.selected_quizes[0].length);
 
 		req.session.selected_number = rand;
 
@@ -41,7 +41,7 @@ exports.start_surveys = function(req, res){
 	else res.redirect('/bad_login');
 }
 
-exports.save = function(req, res){
+/*exports.save = function(req, res){
 	if(req.session.isUserLogged){
 
 		var input = JSON.parse(JSON.stringify(req.body));
@@ -53,4 +53,4 @@ exports.save = function(req, res){
 
 	}
 	else res.redirect('/bad_login');
-}
+}*/
