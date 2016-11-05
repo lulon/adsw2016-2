@@ -77,11 +77,11 @@ app.post('/admin_login_handler', users.admin_login_handler);
 app.post('/user_login_handler', users.user_login_handler);
 
 //Quizes
-app.get('/quiz', quiz.list);
-app.get('/quiz/add', quiz.add);
+app.get('/quiz/list/:idproyect', quiz.list);
+app.get('/quiz/add/:idproyect', quiz.add);
 app.post('/quiz/add', quiz.save);
-app.get('/quiz/disable/:idquiz/:activated', quiz.disable_quiz);
-app.get('/quiz/delete/:idquiz', quiz.delete_quiz);
+app.get('/quiz/disable/:idproyect/:idquiz/:activated', quiz.disable_quiz);
+app.get('/quiz/delete/:idproyect/:idquiz', quiz.delete_quiz);
 
 //Proyects
 app.get('/proyect', proyect.list);

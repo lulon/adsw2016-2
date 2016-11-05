@@ -1,6 +1,7 @@
 //Vista lista de proyectos.
 exports.list = function(req, res){
 	if(req.session.isAdminLogged){
+		var idproyect = req.params.idproyect;
      	req.getConnection(function(err,connection){
          
         	var query = connection.query('SELECT * FROM proyect',function(err,rows)
@@ -35,14 +36,14 @@ exports.save = function(req, res){
 			var nowdate = new Date();
 			var data = {
 				name		:input.name,
-				startdate	:input.datefinish,
-				finishdate	:nowdate.toLocaleDateString(),
+				startdate	:nowdate.toLocaleDateString(),
+				finishdate	:input.datefinish,
 				customer	:input.customer
 			};
 			var query = connection.query("INSERT INTO proyect set ? ",data,function(err, rows){
 				if (err) console.log("Error inserting : %s", err);
 
-				res.redirect('/proyect/add')
+				res.redirect('/proyect')
 			});
 		});
 	}
