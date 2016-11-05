@@ -1,6 +1,5 @@
 <%- include layouts/admin_header.ejs %>
             <h1>USERS REGISTERED IN SYSTEM </h1>
-            <a href="/user/add" class="btn btn-primary"><span class="fa fa-user"></span> + Add</a>
             <table class="table">
                 <tr>
                     <th width="50px">No</th>
@@ -35,6 +34,12 @@
                     <td colspan="3">No contacts to call</td>
                  </tr>
             <% } %>
+
+                <tr>
+                    <td> 
+                        <a href="/user/add" class="btn btn-primary"><span class="fa fa-user"></span> + Add</a>
+                    </td>
+                </tr>
                               
             </table>
         

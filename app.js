@@ -72,6 +72,9 @@ app.get('/bad_login', users.bad_login);
 app.post('/admin_login_handler', users.admin_login_handler);
 app.post('/user_login_handler', users.user_login_handler);
 app.get('/quiz', quiz.list);
+app.get('/quiz/add', quiz.add);
+app.post('/quiz/add', quiz.save);
+app.get('/quiz/delete/:name', quiz.delete_quiz);
 
 app.use(app.router);
 
