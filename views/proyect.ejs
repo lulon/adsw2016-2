@@ -1,10 +1,10 @@
 <%- include layouts/admin_header.ejs %>
-		<h1>Proyects registered</h1>
-		<h4>Here you can create or delete proyects, add quizzes to a proyect, and enable or disable a quiz related to a proyect.</h4> 
+		<h1>Projects registered</h1>
+		<h4>Here you can create or delete projects, add quizzes to a project, and enable or disable a quiz related to a project.</h4> 
 		 
             <table class="table">
                 <tr>
-                    <th width="50px">No</th>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Start Date</th>
                     <th>Finish Date</th>
@@ -21,12 +21,14 @@
                     <td><%=data[i].startdate%></td>
                     <td><%=data[i].finishdate%></td>
                     <td><%=data[i].customer%></td>
-                    <td><a class="btn btn-danger btn-xs a-inside delete" href="../proyect/delete/<%=data[i].idproyect%>">Delete</a></td>
+                    <td><a class="btn btn-danger btn-xs a-inside delete" href="../proyect/delete/<%=data[i].idproyect%>">Delete</a>
+                    	<a class="btn btn-success btn-xs a-inside" href="../quiz/list/<%=data[i].idproyect%>">Quizes</a>
+                    </td>
             <%		 
            		}
              }else{ %>
                  <tr>
-                    <td colspan="3">No quizzes registered.</td>
+                    <td colspan="3">No project registered.</td>
                  </tr>
             <% } %>
             	<tr>
