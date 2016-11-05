@@ -1,0 +1,44 @@
+<%- include layouts/admin_header.ejs %>
+		<h1>Proyects registered</h1>
+		<h4>Here you can create or delete proyects, add quizzes to a proyect, and enable or disable a quiz related to a proyect.</h4> 
+		 
+            <table class="table">
+                <tr>
+                    <th width="50px">No</th>
+                    <th>Name</th>
+                    <th>Start Date</th>
+                    <th>Finish Date</th>
+                    <th>Customer</th>
+                    <th>EDIT</th>
+                </tr>
+                               
+                <% if(data.length){ 
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+                    <td><%=(i+1)%></td>
+                    <td><%=data[i].name%></td>
+                    <td><%=data[i].startdate%></td>
+                    <td><%=data[i].finishdate%></td>
+                    <td><%=data[i].customer%></td>
+                    <td><a class="btn btn-danger btn-xs a-inside delete" href="../proyect/delete/<%=data[i].idproyect%>">Delete</a></td>
+            <%		 
+           		}
+             }else{ %>
+                 <tr>
+                    <td colspan="3">No quizzes registered.</td>
+                 </tr>
+            <% } %>
+            	<tr>
+                	<th>
+                		<a href="../quiz/add" class="btn btn-primary"><span class="fa fa-clipboard"></span> + Add</a>
+                	</th>
+                </tr>
+                              
+            </table>
+
+
+
+
+
+<%- include layouts/footer.ejs %>
