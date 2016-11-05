@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Call Manager</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <style>
-        body        { padding-top:80px; }
+        body        { padding-top:00px; }
+        .contact-info{ align-content: center }
     </style>
 
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><%=page_title%></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/user_logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
+    <div class="col-md-6 contact-info">
+        <h1>Información Del Contacto</h1>
+        <p>Nombre: <%= data.name%></p>
+        <p>Apellido: <%= data.last_name%></p>
+        <p>Telefono: <%= data.phone%></p>
+    </div>
 
-    <div class="jumbotron">
 
-        <p>Login</p>
+    <div class="col-md-6 call-update">
 
-        <a href="/user_login" class="btn btn-default"><span class="fa fa-user"></span> User Login</a>
-        <a href="/admin_login" class="btn btn-default"><span class="fa fa-user"></span> Admin Login</a>
+        <a class="btn btn-large btn-primary" href="skype:+<%=data[i].phone%>?call"></a>
+        <h1>Opciones de llamada</h1>
+
+        <a href="/update/success" class="btn btn-success"><span class="fa fa-phone"></span> Exitosa</a>
+        <a href="/update/noanswer" class="btn btn-warning"><span class="fa fa-phone"></span> No Contesta</a>
+        <a href="/update/notexists" class="btn btn-danger"><span class="fa fa-phone"></span> No Existe</a>
     </div>
 
 </div>

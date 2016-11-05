@@ -51,12 +51,13 @@
         for(var i = 0;i < data.length;i++) { %>
 
         <tr>
+
             <td><%=(i+1)%></td>
             <td><%=data[i].name%></td>
             <td><%=data[i].startdate%></td>
             <td><%=data[i].finishdate%></td>
             <td><%=data[i].customer%></td>
-            <td><a class="btn btn-success btn-xs a-inside" href="/getcall/"<%=data[i].idproyect%>">Start Calls</a></td>
+            <td><a class="btn btn-success btn-xs a-inside" href="/call/<%=data[i].idproyect%>">Start Calls</a></td>
         </tr>
             <%
             }
