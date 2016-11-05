@@ -85,6 +85,7 @@ app.get('/quiz/delete/:idquiz', quiz.delete_quiz);
 app.get('/proyect', proyect.list);
 app.get('/proyect/add', proyect.add);
 app.post('/proyect/add', proyect.save);
+app.get('/proyect/delete/:idproyect', proyect.delete_proyect);
 
 app.use(app.router);
 

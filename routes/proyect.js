@@ -50,3 +50,16 @@ exports.save = function(req, res){
 };
 
 //Logica borrar proyecto.
+exports.delete_proyect = function(req, res){
+	var isAdminLogged = req.session.isAdminLogged
+	if(isAdminLogged){
+		var idproyect = req.params.idproyect;
+		req.getConnection(function (err, connection){
+			connection.query("DELETE FROM proyect WHERE idproyect = ?",[idproyect],function(err, rows){
+				if(err) console.log("Error deleting : %s ", err);
+				res.redirect('/proyect');
+			});
+		});
+	}
+	else res.redirect('/bad_login');
+};
