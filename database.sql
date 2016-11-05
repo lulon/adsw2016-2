@@ -29,5 +29,17 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `idquiz` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `link` VARCHAR(200) NOT NULL,
+  `activated` BOOL DEFAULT TRUE,
   PRIMARY KEY (`idquiz`)
 );
+
+CREATE TABLE IF NOT EXISTS `call` (
+  `idcontact` INT(11) NOT NULL,
+  `idquiz` INT(11) NOT NULL,
+  `duration` INT(11) NOT NULL,
+  `date`	DATE NOT NULL,
+  `status`	VARCHAR(30) NOT NULL,
+  PRIMARY KEY(`idcontact`,`idquiz`),
+  FOREIGN KEY(`idcontact`) REFERENCES contact(idcontact),
+  FOREIGN KEY(`idquiz`) REFERENCES quiz(idquiz)
+  );

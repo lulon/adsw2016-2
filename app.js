@@ -80,7 +80,8 @@ app.post('/user_login_handler', users.user_login_handler);
 app.get('/quiz', quiz.list);
 app.get('/quiz/add', quiz.add);
 app.post('/quiz/add', quiz.save);
-app.get('/quiz/delete/:name', quiz.delete_quiz);
+app.get('/quiz/disable/:idquiz/:activated', quiz.disable_quiz);
+app.get('/quiz/delete/:idquiz', quiz.delete_quiz);
 
 app.use(app.router);
 

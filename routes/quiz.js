@@ -32,8 +32,8 @@ exports.save = function(req,res){
 
 		req.getConnection(function (err, connection){
 			var data = {
-				name	:input.name,
-				link	:input.link
+				name		:input.name,
+				link		:input.link
 			};
 
 			var query = connection.query("INSERT INTO quiz SET ? ",data, function(err, rows){
@@ -46,12 +46,27 @@ exports.save = function(req,res){
 	else res.redirect('/bad_login');
 };
 
+exports.disable_quiz = function(req,res){
+	if(req.app.isAdminLogged){
+		var idquiz = req.params.idquiz;
+		var activated = req.params.activated;
+		req.getConnection(function(err, connection){
+			connection.query('UPDATE quiz SET activated = ? WHERE idquiz = ?',[activated,idquiz],function(err,rows)
+			{
+				if(err) console.log("Error Selecting : %s ",err);
+
+			res.redirect('/quiz');
+			});
+		});
+	}else res.redirect('/bad_login')
+};
+
 //Logica borrar encuesta.
 exports.delete_quiz = function(req,res){
 	if(req.app.isAdminLogged){
-		var name = req.params.name;
+		var idquiz = req.params.idquiz;
 		req.getConnection(function(err, connection){
-			connection.query("DELETE FROM quiz WHERE name = ? ",[name], function(err,rows){
+			connection.query("DELETE FROM quiz WHERE idquiz = ? ",[idquiz], function(err,rows){
 				if(err)
 					console.log("Error deleting : %s", err);
 
@@ -62,3 +77,4 @@ exports.delete_quiz = function(req,res){
 	else
 		res.redirect('/bad_login');
 };
+
