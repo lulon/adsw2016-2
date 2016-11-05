@@ -18,22 +18,23 @@
                     <td><%=(i+1)%></td>
                     <td><%=data[i].name%></td>
                     <td><%=data[i].link%></td>
-                    <td><a class="btn btn-danger btn-xs a-inside delete" href="../quiz/delete/<%=data[i].idquiz%>">Delete</a>
+                    <td><a class="btn btn-danger btn-xs a-inside delete" href="../delete/<%=idproyect%>/<%=data[i].idquiz%>">Delete</a>
                     	<%if(data[i].activated){%>
-                    		<a class="btn btn-danger btn-xs a-inside delete" href="../quiz/disable/<%=data[i].idquiz%>/0">Disable</a>
+                    		<a class="btn btn-danger btn-xs a-inside delete" href="../disable/<%=idproyect%>/<%=data[i].idquiz%>/0">Disable</a>
                    	 <%} else {%>
-                    		<a class="btn btn-success btn-xs a-inside delete" href="../quiz/disable/<%=data[i].idquiz%>/1">Enable</a>
+                    		<a class="btn btn-success btn-xs a-inside delete" href="../disable/<%=idproyect%>/<%=data[i].idquiz%>/1">Enable</a>
                    </td>
-            <%		} 
+            <%		    } 
            		}
              }else{ %>
                  <tr>
                     <td colspan="3">No quizzes registered.</td>
                  </tr>
             <% } %>
+
             	<tr>
                 	<th>
-                		<a href="../quiz/add" class="btn btn-primary"><span class="fa fa-clipboard"></span> + Add</a>
+                		<a href="/quiz/add/<%=idproyect%>" class="btn btn-primary"><span class="fa fa-clipboard"></span> + Add</a>
                 	</th>
                 </tr>
                               

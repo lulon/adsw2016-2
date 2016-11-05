@@ -41,14 +41,14 @@ exports.save = function(req, res){
 			var nowdate = new Date();
 			var data = {
 				name		:input.name,
-				startdate	:input.datefinish,
-				finishdate	:nowdate.toLocaleDateString(),
+				startdate	:nowdate.toLocaleDateString(),
+				finishdate	:input.datefinish,
 				customer	:input.customer
 			};
 			var query = connection.query("INSERT INTO proyect set ? ",data,function(err, rows){
 				if (err) console.log("Error inserting : %s", err);
 
-				res.redirect('/proyect/add')
+				res.redirect('/proyect')
 			});
 		});
 	}
@@ -56,3 +56,16 @@ exports.save = function(req, res){
 };
 
 //Logica borrar proyecto.
+exports.delete_proyect = function(req, res){
+	var isAdminLogged = req.session.isAdminLogged
+	if(isAdminLogged){
+		var idproyect = req.params.idproyect;
+		req.getConnection(function (err, connection){
+			connection.query("DELETE FROM proyect WHERE idproyect = ?",[idproyect],function(err, rows){
+				if(err) console.log("Error deleting : %s ", err);
+				res.redirect('/proyect');
+			});
+		});
+	}
+	else res.redirect('/bad_login');
+};

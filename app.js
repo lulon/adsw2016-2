@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(flash());
-//variables de sesion.
+// Variables de sesión
 app.use(express.cookieParser('isLogged'));
 app.use(express.cookieSession());
 
@@ -51,6 +51,10 @@ app.use(
 
 app.get('/', routes.index);
 
+//Call
+app.get('/call/:proyectname', call.start_surveys);
+app.get('/call/save/:contact/:quiz/:duration/:status',call.save)
+
 //Contacts
 app.get('/contact', contact.list);
 app.get('/contact/add', contact.add);
@@ -75,16 +79,17 @@ app.post('/admin_login_handler', users.admin_login_handler);
 app.post('/user_login_handler', users.user_login_handler);
 
 //Quizes
-app.get('/quiz', quiz.list);
-app.get('/quiz/add', quiz.add);
+app.get('/quiz/list/:idproyect', quiz.list);
+app.get('/quiz/add/:idproyect', quiz.add);
 app.post('/quiz/add', quiz.save);
-app.get('/quiz/disable/:idquiz/:activated', quiz.disable_quiz);
-app.get('/quiz/delete/:idquiz', quiz.delete_quiz);
+app.get('/quiz/disable/:idproyect/:idquiz/:activated', quiz.disable_quiz);
+app.get('/quiz/delete/:idproyect/:idquiz', quiz.delete_quiz);
 
 //Proyects
 app.get('/proyect', proyect.list);
 app.get('/proyect/add', proyect.add);
 app.post('/proyect/add', proyect.save);
+app.get('/proyect/delete/:idproyect', proyect.delete_proyect);
 
 app.use(app.router);
 
