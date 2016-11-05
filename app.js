@@ -7,6 +7,8 @@ var contact = require('./routes/contact');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
 var quiz = require('./routes/quiz');
+var call = require('./routes/call');
+var proyect = require('./routes/proyect');
 var app = express();
 var flash = require('connect-flash');
 
@@ -51,7 +53,7 @@ app.get('/', routes.index);
 
 //Call
 app.get('/call/:proyectname', call.start_surveys);
-app.get('/call/save/:contact/:quiz/:duration/:status',call.save)
+//app.get('/call/save/:contact/:quiz/:duration/:status',call.save)
 
 //Contacts
 app.get('/contact', contact.list);
