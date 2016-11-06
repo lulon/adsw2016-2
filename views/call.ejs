@@ -8,7 +8,8 @@
         body        { padding-top:00px; }
         .contact-info{ align-content: center }
     </style>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.dev.skype.com/uri/skype-uri.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -25,22 +26,39 @@
 <div class="container">
     <div class="col-md-6 contact-info">
         <h1>Información Del Contacto</h1>
-        <p>Nombre: <%= data.name%></p>
-        <p>Apellido: <%= data.last_name%></p>
-        <p>Telefono: <%= data.phone%></p>
+        <p>Nombre: <%=data.name%></p>
+        <p>Apellido: <%=data.last_name%></p>
+        <p>Telefono: <%=data.phone%></p>
     </div>
 
 
     <div class="col-md-6 call-update">
 
-        <a class="btn btn-large btn-primary" href="skype:+<%=data[i].phone%>?call"></a>
+        <a class="btn btn-large btn-primary" href="skype:+<%=data.phone%>?call" onclick="makeCall('<%=link%>')">Llamar</a>
         <h1>Opciones de llamada</h1>
 
-        <a href="/update/success" class="btn btn-success"><span class="fa fa-phone"></span> Exitosa</a>
-        <a href="/update/noanswer" class="btn btn-warning"><span class="fa fa-phone"></span> No Contesta</a>
-        <a href="/update/notexists" class="btn btn-danger"><span class="fa fa-phone"></span> No Existe</a>
+        <button id="myBtn1" href="/update/success" class="btn btn-success"><span class="fa fa-phone" disabled></span> Exitosa</button>
+        <button id="myBtn2" href="/update/noanswer" class="btn btn-warning"><span class="fa fa-phone" disabled></span> No Contesta</button>
+        <button id="myBtn3" href="/update/notexists" class="btn btn-danger"><span class="fa fa-phone" disabled></span> No Existe</button>
     </div>
 
 </div>
+
+<script>
+function makeCall(x) {
+    var win = window.open(x, '_blank');
+    if (win) {
+        //Browser has allowed it to be opened
+        win.focus();
+        document.getElementById("myBtn1").disabled = false;
+        document.getElementById("myBtn2").disabled = false;
+        document.getElementById("myBtn3").disabled = false;
+    } else {
+        //Browser has blocked it
+        alert('Active los Pop-Ups para esta página');
+    }
+}
+</script>
+
 </body>
 </html>

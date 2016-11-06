@@ -2,41 +2,34 @@
 exports.start_surveys = function(req, res){
 	if(req.session.isUserLogged){
 
-		var project = req.params.projectname;
-		req.session.selected_project = project;
-
-		if(typeof req.session.selected_quizes == 'undefined'){
-
-		    req.getConnection(function (err, connection) {
-
-		        connection.query("SELECT * FROM quiz WHERE idproject = ?",[project], function(err, rows)
-		        {
-		            if(err)
-		                console.log("Error : %s ", err);
-		            
-		            req.session.selected_quizes = rows;		             
-		        });
-		        
-		    });			
-		}
-
-		var rand = Math.floor(Math.random() * req.session.selected_quizes[0].length);
-
-		req.session.selected_number = rand;
+		var idproject = req.params.idproject;
 
 		req.getConnection(function (err, connection) {
 
-			connection.query("SELECT * FROM contact WHERE NOT EXISTS (SELECT idcontact FROM `call` WHERE idquiz = ?) ORDER BY RAND() LIMIT 1", [req.session.quizes[rand].idquiz], function(err, rows)
-				{
-					if(err)
-		                console.log("Error : %s ", err);
+	        connection.query("SELECT * FROM quiz JOIN project ON project.idproject = quiz.idproyect WHERE idproject = ?",[idproject], function(err, rows)
+	        {
+	            if(err)
+	                console.log("Error : %s ", err);
+	            
+	            var selected_quizes = rows;
+				var rand = Math.floor(Math.random() * selected_quizes.length);
 
-		            res.render('call',{page_title:"Call",data:rows,link:req.session.selected_quizes[rand].link});
+				connection.query("SELECT * FROM contact WHERE idcontact NOT IN (SELECT idcontact FROM `call` WHERE idquiz = ?) ORDER BY RAND() LIMIT 1", [selected_quizes[rand].idquiz], function(err, rows)
+					{
+						if(err)
+			                console.log("Error : %s ", err);
 
-				})
+					    req.session.selected_idproject = idproject;
+						req.session.selected_number = rand;
+						req.session.selected_quizes = selected_quizes;	
 
-		});
+						console.log(rows)
 
+			            res.render('call',{page_title:"Call",data:rows,link:selected_quizes[rand].link});
+
+					});	       
+	        });
+		});	
 	}
 	else res.redirect('/bad_login');
 }

@@ -52,7 +52,7 @@ app.use(
 app.get('/', routes.index);
 
 //Call
-app.get('/call/:projectname', call.start_surveys);
+app.get('/call/:idproject', call.start_surveys);
 //app.post('/call/save/',call.save)
 
 //Contacts
