@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(10) NOT NULL,
-  `paasword` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`iduser`)
 );
 

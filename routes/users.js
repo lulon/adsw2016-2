@@ -30,7 +30,7 @@ exports.user_login_handler = function(req, res){
 
     req.getConnection(function(err,connection){
          
-          var query = connection.query('SELECT * FROM user WHERE username = ? AND password = ?',[username,password],function(err,rows)
+          connection.query('SELECT * FROM user WHERE username = ? AND password = ?',[username,password],function(err,rows)
           {
           	  if(rows.length == 0 ){
           	  	console.log('Invalid Username or Password.');
@@ -43,10 +43,7 @@ exports.user_login_handler = function(req, res){
               if(rows.length == 1){
               	req.session.isUserLogged = true;
               	res.redirect('/project');
-              }
-                       
-             
-           });
+              }        });
            
            //console.log(query.sql);
       });
