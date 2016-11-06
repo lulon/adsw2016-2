@@ -25,13 +25,13 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`idadmin`)
 );
 
-CREATE TABLE IF NOT EXISTs `proyect` (
-  `idproyect` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTs `project` (
+  `idproject` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL,
   `startdate` DATE NOT NULL,
   `finishdate` DATE NOT NULL,
   `customer` VARCHAR(100),
-  PRIMARY KEY(`idproyect`)
+  PRIMARY KEY(`idproject`)
 );
 
 CREATE TABLE IF NOT EXISTS `quiz` (
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `activated` BOOL DEFAULT TRUE,
   `idproyect` INT(11) NOT NULL,
   PRIMARY KEY (`idquiz`),
-  FOREIGN KEY(`idproyect`) REFERENCES proyect(idproyect)
+  FOREIGN KEY(`idproyect`) REFERENCES project(idproject)
 );
 
 CREATE TABLE IF NOT EXISTS `call` (
