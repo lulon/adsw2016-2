@@ -37,9 +37,9 @@
         <a class="btn btn-large btn-primary" href="skype:+<%=data.phone%>?call" onclick="makeCall('<%=link%>')">Llamar</a>
         <h1>Opciones de llamada</h1>
 
-        <button id="myBtn1" href="/update/success" class="btn btn-success"><span class="fa fa-phone" disabled></span> Exitosa</button>
-        <button id="myBtn2" href="/update/noanswer" class="btn btn-warning"><span class="fa fa-phone" disabled></span> No Contesta</button>
-        <button id="myBtn3" href="/update/notexists" class="btn btn-danger"><span class="fa fa-phone" disabled></span> No Existe</button>
+        <button id="myBtn1" type="button" href="/call/save/success/<%=data.idcontact%>" class="btn btn-success" disabled><span class="fa fa-phone"></span> Exitosa</button>
+        <button id="myBtn2" type="button" href="/call/save/noanswer/<%=data.idcontact%>" class="btn btn-warning" disabled><span class="fa fa-phone"></span> No Contesta</button>
+        <button id="myBtn3" type="button" href="/call/save/notexists/<%=data.idcontact%>" class="btn btn-danger" disabled><span class="fa fa-phone"></span> No Existe</button>
     </div>
 
 </div>
