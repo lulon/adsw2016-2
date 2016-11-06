@@ -8,7 +8,7 @@ var users = require('./routes/users');
 var admin = require('./routes/admin');
 var quiz = require('./routes/quiz');
 var call = require('./routes/call');
-var proyect = require('./routes/proyect');
+var project = require('./routes/project');
 var app = express();
 var flash = require('connect-flash');
 
@@ -24,7 +24,6 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(flash());
-// Variables de sesión
 app.use(express.cookieParser('isLogged'));
 app.use(express.cookieSession());
 
@@ -53,8 +52,8 @@ app.use(
 app.get('/', routes.index);
 
 //Call
-app.get('/call/:proyectname', call.start_surveys);
-//app.get('/call/save/:contact/:quiz/:duration/:status',call.save)
+app.get('/call/:projectname', call.start_surveys);
+//app.post('/call/save/',call.save)
 
 //Contacts
 app.get('/contact', contact.list);
@@ -80,17 +79,17 @@ app.post('/admin_login_handler', users.admin_login_handler);
 app.post('/user_login_handler', users.user_login_handler);
 
 //Quizes
-app.get('/quiz/list/:idproyect', quiz.list);
-app.get('/quiz/add/:idproyect', quiz.add);
+app.get('/quiz/list/:idproject', quiz.list);
+app.get('/quiz/add/:idproject', quiz.add);
 app.post('/quiz/add', quiz.save);
-app.get('/quiz/disable/:idproyect/:idquiz/:activated', quiz.disable_quiz);
-app.get('/quiz/delete/:idproyect/:idquiz', quiz.delete_quiz);
+app.get('/quiz/disable/:idproject/:idquiz/:activated', quiz.disable_quiz);
+app.get('/quiz/delete/:idproject/:idquiz', quiz.delete_quiz);
 
-//Proyects
-app.get('/proyect', proyect.list);
-app.get('/proyect/add', proyect.add);
-app.post('/proyect/add', proyect.save);
-app.get('/proyect/delete/:idproyect', proyect.delete_proyect);
+//projects
+app.get('/project', project.list);
+app.get('/project/add', project.add);
+app.post('/project/add', project.save);
+app.get('/project/delete/:idproject', project.delete_project);
 
 app.use(app.router);
 

@@ -9,7 +9,7 @@ exports.list = function(req, res){
                 if(err)
                     console.log("Error Selecting : %s ",err );
          
-                res.render('user',{page_title:"Users",data:rows});
+                project
                     
              });
              //console.log(query.sql);

@@ -1,15 +1,15 @@
 //Vista mostrar quiz
 exports.list = function(req, res){
  	if(req.session.isAdminLogged){
- 		var idproyect = req.params.idproyect;
+ 		var idproject = req.params.idproject;
 	    req.getConnection(function(err,connection){
 	           
-	            var query = connection.query('SELECT * FROM quiz WHERE idproyect = ?',[idproyect],function(err,rows)
+	            var query = connection.query('SELECT * FROM quiz WHERE idproject = ?',[idproject],function(err,rows)
 	            {
 	                if(err)
 	                    console.log("Error Selecting : %s ",err );
 	         
-	                res.render('quiz',{page_title:"Quiz",data:rows,idproyect:idproyect});
+	                res.render('quiz',{page_title:"Quiz",data:rows,idproject:idproject});
 	             });
 	             //console.log(query.sql);
 	        });
@@ -20,8 +20,8 @@ exports.list = function(req, res){
 //Vista agregar encuesta.
 exports.add = function(req,res){
 	if(req.session.isAdminLogged){
-		var idproyect = req.params.idproyect;
-		res.render('add_quiz',{page_title:"Add Quiz",idproyect:idproyect});
+		var idproject = req.params.idproject;
+		res.render('add_quiz',{page_title:"Add Quiz",idproject:idproject});
 	}
 	else res.redirect('/bad_login');
 };
@@ -36,13 +36,13 @@ exports.save = function(req,res){
 			var data = {
 				name		:input.name,
 				link		:input.link,
-				idproyect	:input.idproyect
+				idproject	:input.idproject
 			};
 
 			var query = connection.query("INSERT INTO quiz SET ? ",data, function(err, rows){
 				if (err)
 					console.log("Error insrting : %s ", err);
-				res.redirect('../list/'+data.idproyect);
+				res.redirect('../list/'+data.idproject);
 			});
 		});
 	}
@@ -53,13 +53,13 @@ exports.disable_quiz = function(req,res){
 	if(req.session.isAdminLogged){
 		var idquiz = req.params.idquiz;
 		var activated = req.params.activated;
-		var idproyect = req.params.idproyect;
+		var idproject = req.params.idproject;
 		req.getConnection(function(err, connection){
-			connection.query('UPDATE quiz SET activated = ? WHERE idquiz = ? AND idproyect = ?',[activated,idquiz,idproyect],function(err,rows)
+			connection.query('UPDATE quiz SET activated = ? WHERE idquiz = ? AND idproject = ?',[activated,idquiz,idproject],function(err,rows)
 			{
 				if(err) console.log("Error Selecting : %s ",err);
 
-			res.redirect('/quiz/list/'+idproyect);
+			res.redirect('/quiz/list/'+idproject);
 			});
 		});
 	}else res.redirect('/bad_login')
@@ -69,13 +69,13 @@ exports.disable_quiz = function(req,res){
 exports.delete_quiz = function(req,res){
 	if(req.session.isAdminLogged){
 		var idquiz = req.params.idquiz;
-		var idproyect = req.params.idproyect;
+		var idproject = req.params.idproject;
 		req.getConnection(function(err, connection){
 			connection.query("DELETE FROM quiz WHERE idquiz = ? ",[idquiz], function(err,rows){
 				if(err)
 					console.log("Error deleting : %s", err);
 
-				res.redirect('/quiz/list/'+idproyect);
+				res.redirect('/quiz/list/'+idproject);
 			});
 		});
 	}

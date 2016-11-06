@@ -1,15 +1,15 @@
-//Vista lista de proyectos.
+//Vista lista de projectos.
 exports.list = function(req, res){
 	if(req.session.isUserLogged){
 		var view = 'user_indx';
 	}
 	 else if(req.session.isAdminLogged){
-		var view = 'proyect';
+		var view = 'project';
 	}
 	if(req.session.isAdminLogged || req.session.isUserLogged){
      	req.getConnection(function(err,connection){
          
-        	var query = connection.query('SELECT * FROM proyect',function(err,rows)
+        	var query = connection.query('SELECT * FROM project',function(err,rows)
         	{
             	if(err)
             	    console.log("Error Selecting : %s ",err );
@@ -22,16 +22,16 @@ exports.list = function(req, res){
   else res.redirect('/bad_login');
 };
 
-//Vista agregar proyectos
+//Vista agregar projectos
 exports.add = function(req, res){
 	var isAdminLogged = req.app.get('isAdminLogged');
 	if (req.session.isAdminLogged){
-		res.render('add_proyect',{page_title:"Add Proyect"});
+		res.render('add_project',{page_title:"Add project"});
 	}
 	else res.redirect('/bad_login');
 };
 
-//Logica agregar proyectos.
+//Logica agregar projectos.
 exports.save = function(req, res){
 	var isAdminLogged = req.session.isAdminLogged
 	if(isAdminLogged){
@@ -45,25 +45,25 @@ exports.save = function(req, res){
 				finishdate	:input.datefinish,
 				customer	:input.customer
 			};
-			var query = connection.query("INSERT INTO proyect set ? ",data,function(err, rows){
+			var query = connection.query("INSERT INTO project set ? ",data,function(err, rows){
 				if (err) console.log("Error inserting : %s", err);
 
-				res.redirect('/proyect')
+				res.redirect('/project')
 			});
 		});
 	}
 	else res.redirect('/bad_login');
 };
 
-//Logica borrar proyecto.
-exports.delete_proyect = function(req, res){
+//Logica borrar projecto.
+exports.delete_project = function(req, res){
 	var isAdminLogged = req.session.isAdminLogged
 	if(isAdminLogged){
-		var idproyect = req.params.idproyect;
+		var idproject = req.params.idproject;
 		req.getConnection(function (err, connection){
-			connection.query("DELETE FROM proyect WHERE idproyect = ?",[idproyect],function(err, rows){
+			connection.query("DELETE FROM project WHERE idproject = ?",[idproject],function(err, rows){
 				if(err) console.log("Error deleting : %s ", err);
-				res.redirect('/proyect');
+				res.redirect('/project');
 			});
 		});
 	}

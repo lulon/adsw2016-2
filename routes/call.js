@@ -2,14 +2,14 @@
 exports.start_surveys = function(req, res){
 	if(req.session.isUserLogged){
 
-		var proyect = req.params.proyectname;
-		req.session.selected_proyect = proyect;
+		var project = req.params.projectname;
+		req.session.selected_project = project;
 
 		if(typeof req.session.selected_quizes == 'undefined'){
 
 		    req.getConnection(function (err, connection) {
 
-		        connection.query("SELECT * FROM quiz WHERE idproyect = ?",[proyect], function(err, rows)
+		        connection.query("SELECT * FROM quiz WHERE idproject = ?",[project], function(err, rows)
 		        {
 		            if(err)
 		                console.log("Error : %s ", err);
