@@ -37,7 +37,7 @@ exports.edit = function(req, res){
     var phone = req.params.phone;
     
     req.getConnection(function(err,connection){
-       
+
         var query = connection.query('SELECT * FROM contact WHERE phone = ?',[phone],function(err,rows)
         {
             
@@ -55,7 +55,6 @@ exports.edit = function(req, res){
     else res.redirect('/bad_login');
 };
 
-
 exports.save = function(req,res){
     var isAdminLogged = req.session.isAdminLogged;;
 
@@ -68,8 +67,7 @@ exports.save = function(req,res){
             
             name      : input.name,
             last_name : input.last_name,
-            phone     : input.phone,
-            to_call   : input.to_call 
+            phone     : input.phone 
         
         };
         
