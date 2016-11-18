@@ -6,7 +6,7 @@ exports.start_surveys = function(req, res){
 
 		req.getConnection(function (err, connection) {
 
-	        connection.query("SELECT * FROM quiz JOIN project ON project.idproject = quiz.idproyect WHERE idproject = ?",[idproject], function(err, rows)
+	        connection.query("SELECT * FROM quiz JOIN project ON project.idproject = quiz.idproject WHERE quiz.idproject = ?",[idproject], function(err, rows)
 	        {
 	            if(err)
 	                console.log("Error : %s ", err);

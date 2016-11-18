@@ -26,20 +26,26 @@
 <div class="container">
     <div class="col-md-6 contact-info">
         <h1>Información Del Contacto</h1>
-        <p>Nombre: <%=data.name%></p>
-        <p>Apellido: <%=data.last_name%></p>
-        <p>Telefono: <%=data.phone%></p>
+        <p>Nombre: <%=data[0].name%></p>
+        <p>Apellido: <%=data[0].last_name%></p>
+        <p>Telefono: <%=data[0].phone%></p>
     </div>
 
 
     <div class="col-md-6 call-update">
 
-        <a class="btn btn-large btn-primary" href="skype:+<%=data.phone%>?call" onclick="makeCall('<%=link%>')">Llamar</a>
+        <a class="btn btn-large btn-primary" href="skype:+<%=data[0].phone%>?call" onclick="makeCall('<%=link%>')">Llamar</a>
         <h1>Opciones de llamada</h1>
+        <form class="form-inline" action="/call/save/success/<%=data[0].idcontact%>" method="get">
+            <button id="myBtn1" type="submit" class="btn btn-success" disabled><span class="fa fa-phone"></span> Exitosa</button>
+        </form>
+        <form class="form-inline" action="/call/save/noanswer/<%=data[0].idcontact%>" method="get">
+            <button id="myBtn2" type="submit" class="btn btn-warning" disabled><span class="fa fa-phone"></span> No Contesta</button>
+        </form>
 
-        <button id="myBtn1" type="button" href="/call/save/success/<%=data.idcontact%>" class="btn btn-success" disabled><span class="fa fa-phone"></span> Exitosa</button>
-        <button id="myBtn2" type="button" href="/call/save/noanswer/<%=data.idcontact%>" class="btn btn-warning" disabled><span class="fa fa-phone"></span> No Contesta</button>
-        <button id="myBtn3" type="button" href="/call/save/notexists/<%=data.idcontact%>" class="btn btn-danger" disabled><span class="fa fa-phone"></span> No Existe</button>
+        <form class="form-inline" action="/call/save/notexist/<%=data[0].idcontact%>" method="get">
+            <button id="myBtn3" type="submit" class="btn btn-danger" disabled><span class="fa fa-phone"></span> No Existe</button>
+        </form>
     </div>
 
 </div>

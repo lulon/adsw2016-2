@@ -39,9 +39,9 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `name` VARCHAR(45) NOT NULL,
   `link` VARCHAR(200) NOT NULL,
   `activated` BOOL DEFAULT TRUE,
-  `idproyect` INT(11) NOT NULL,
+  `idproject` INT(11) NOT NULL,
   PRIMARY KEY (`idquiz`),
-  FOREIGN KEY(`idproyect`) REFERENCES project(idproject)
+  FOREIGN KEY(`idproject`) REFERENCES project(idproject)
 );
 
 CREATE TABLE IF NOT EXISTS `call` (
