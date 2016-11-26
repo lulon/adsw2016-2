@@ -59,7 +59,7 @@ app.post('/call/save/:result', call.save)
 app.get('/contact', contact.list);
 app.get('/contact/add', contact.add);
 app.post('/contact/add', contact.save);
-app.get('/contact/delete/:phone', contact.delete_customer);
+app.get('/contact/delete/:idcontact', contact.delete);
 app.get('/contact/edit/:phone', contact.edit);
 app.post('/contact/edit/:phone',contact.save_edit);
 

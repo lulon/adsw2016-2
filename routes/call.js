@@ -46,25 +46,30 @@ exports.start_surveys = function(req, res){
 	else res.redirect('/bad_login');
 }
 
+
 exports.save = function(req, res){
 	if(req.session.isUserLogged){
+		var status = req.params.result;
+		if (status == 'notexist'){
+			res.redirect('/contact/delete/' + req.session.current_idcontact)
+		} else {
+            req.getConnection(function (err, connection)
+            {
+                var nowdate = new Date();
+                var data = {
+                    idcontact: req.session.current_idcontact.toString(),
+                    idquiz: req.session.selected_quizes[req.session.selected_number].idquiz.toString(),
+                    duration: "60", //hay que implementar esto con la grabación
+                    date: nowdate.toLocaleDateString(),
+                    status: status
+                };
+                connection.query("INSERT INTO `call` set ? ",data,function(err, rows){
+                    if (err) console.log("Error inserting : %s", err);
 
-		req.getConnection(function (err, connection)
-			{
-				var nowdate = new Date();
-				var data = {
-					idcontact: req.session.current_idcontact.toString(),
-					idquiz: req.session.selected_quizes[req.session.selected_number].idquiz.toString(),
-					duration: "60", //hay que implementar esto con la grabación
-					date: nowdate.toLocaleDateString(),
-					status: req.params.result.toString()
-				};
-				connection.query("INSERT INTO `call` set ? ",data,function(err, rows){
-					if (err) console.log("Error inserting : %s", err);
-
-					res.redirect('/call/' + req.session.selected_idproject);
-				});
-			})
+                    res.redirect('/call/' + req.session.selected_idproject);
+                });
+            });
+        }
 
 	}
 	else res.redirect('/bad_login');
