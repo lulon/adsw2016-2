@@ -36,14 +36,14 @@
 
         <a class="btn btn-large btn-primary" href="skype:+<%=data[0].phone%>?call" onclick="makeCall('<%=link%>')">Llamar</a>
         <h1>Opciones de llamada</h1>
-        <form class="form-inline" action="/call/save/success/<%=data[0].idcontact%>" method="get">
+        <form class="form-inline" action="/call/save/success" method="post">
             <button id="myBtn1" type="submit" class="btn btn-success" disabled><span class="fa fa-phone"></span> Exitosa</button>
         </form>
-        <form class="form-inline" action="/call/save/noanswer/<%=data[0].idcontact%>" method="get">
+        <form class="form-inline" action="/call/save/noanswer" method="post">
             <button id="myBtn2" type="submit" class="btn btn-warning" disabled><span class="fa fa-phone"></span> No Contesta</button>
         </form>
 
-        <form class="form-inline" action="/call/save/notexist/<%=data[0].idcontact%>" method="get">
+        <form class="form-inline" action="/call/save/notexist" method="post">
             <button id="myBtn3" type="submit" class="btn btn-danger" disabled><span class="fa fa-phone"></span> No Existe</button>
         </form>
     </div>

@@ -13,6 +13,9 @@ exports.admin_login = function(req, res){
 
 exports.user_logout = function(req, res){
 	req.session.isUserLogged = false;
+	req.session.selected_idproject = 'undefined';
+	req.session.selected_quizes = 'undefined';
+	req.session.current_contact = 'undefined';
 	res.redirect('/');
 };
 

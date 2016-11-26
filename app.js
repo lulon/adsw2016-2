@@ -54,7 +54,7 @@ app.get('/', routes.index);
 
 //Call
 app.get('/call/:idproject', call.start_surveys);
-app.get('/call/save/:result/:idcontact', call.save)
+app.post('/call/save/:result', call.save)
 
 //Contacts
 app.get('/contact', contact.list);
