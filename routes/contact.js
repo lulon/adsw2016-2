@@ -56,37 +56,41 @@ exports.edit = function(req, res){
 };
 
 exports.save = function(req,res){
-    var isAdminLogged = req.session.isAdminLogged;;
-
+    var isAdminLogged = req.session.isAdminLogged;
+    var fs = require("fs");
+    var Papa = require("babyparse")
     if(isAdminLogged){
-    var input = JSON.parse(JSON.stringify(req.body));
-    
-    req.getConnection(function (err, connection) {
-        
-        var data = {
-            
-            name      : input.name,
-            last_name : input.last_name,
-            phone     : input.phone 
-        
-        };
-        
-        var query = connection.query("INSERT INTO contact set ? ",data, function(err, rows)
-        {
-  
-          if (err)
-              console.log("Error inserting : %s ",err );
-         
-          res.redirect('/contact');
+
+      
+      var filetext = fs.readFileSync(req.body.csv, 'utf8');
+      var newPath = __dirname + "/uploads/"+req.body.csv;
+
+          console.log(filetext);
+
+          req.getConnection(function (err, connection) {
           
-        });
-        
-       // console.log(query.sql); get raw query
-    
-    });
+          var parse = Papa.parse(filetext);
+          console.log(parse);
+            var data = {
+                name      : input.name,
+                last_name : input.last_name,
+                phone     : input.phone           
+            };
+            
+            var query = connection.query("INSERT INTO contact set ? ",data, function(err, rows){
+      
+              if (err)
+                  console.log("Error inserting : %s ",err );
+             
+              res.redirect('/contact');  
+            });       
+
+          });
+   
     }
-    else res.redirect('/bad_login');
+      else res.redirect('/bad_login');
 };
+    
 
 exports.save_edit = function(req,res){
 
