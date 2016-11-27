@@ -1,0 +1,15 @@
+<%- include layouts/admin_header.ejs %>
+        <h1>Users in system</h1>
+            <h4>Here you can see the results of the calls made by User.</h4>
+            <% if(data.length){ 
+                 var total = 0;               
+                 for(var i = 0;i < data.length;i++) { 
+                 	total = total + 1;
+                 }
+            }%>
+
+                 <h1><%=total%></h1>
+                 
+           
+     
+<%- include layouts/footer.ejs %>
