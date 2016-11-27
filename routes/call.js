@@ -59,7 +59,7 @@ exports.start_surveys = function(req, res){
 					var selected_quizes = rows;
 					var rand = Math.floor(Math.random() * selected_quizes.length);
 
-					connection.query("SELECT * FROM contact WHERE idcontact NOT IN (SELECT idcontact FROM `call` WHERE idquiz = ?) ORDER BY RAND() LIMIT 1", [selected_quizes[rand].idquiz], function(err, rows)
+					connection.query("SELECT * FROM contact WHERE idcontact NOT IN (SELECT idcontact FROM `call` WHERE idquiz = ? AND status = 'success' ) ORDER BY RAND() LIMIT 1", [selected_quizes[rand].idquiz], function(err, rows)
 					{
 						if(err)
 							console.log("Error : %s ", err);
