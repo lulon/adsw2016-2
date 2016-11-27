@@ -2,6 +2,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var xlsx = require('node-xlsx');
 
 var contact = require('./routes/contact'); 
 var users = require('./routes/users');
