@@ -127,26 +127,25 @@ exports.save_edit = function(req,res){
 };
 
 
-exports.delete_customer = function(req,res){
-    var isAdminLogged = req.session.isAdminLogged;;
+exports.delete = function(req,res){
 
-    if(req.session.isAdminLogged){
+    if(req.session.isUserLogged || req.session.isAdminLogged){
           
-     var phone = req.params.phone;
-    
-     req.getConnection(function (err, connection) {
-        
-        connection.query("DELETE FROM contact WHERE phone = ? ",[phone], function(err, rows)
-        {
-            
-             if(err)
-                 console.log("Error deleting : %s ",err );
-            
-             res.redirect('/contact');
-             
-        });
-        
-     });
+         var idcontact = req.params.idcontact;
+
+         req.getConnection(function (err, connection) {
+
+            connection.query("DELETE FROM contact WHERE idcontact = ? ",[idcontact], function(err, rows)
+            {
+                 if(err)
+                     console.log("Error deleting : %s ",err );
+                if(req.session.isUserLogged){
+                    res.redirect('/call/' + req.session.selected_idproject);
+                } else res.redirect('/contact');
+
+            });
+
+         });
     }
     else res.redirect('/bad_login');
 };
