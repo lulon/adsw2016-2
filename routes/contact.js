@@ -60,33 +60,20 @@ exports.save = function(req,res){
     var fs = require("fs");
     var Papa = require("babyparse")
     if(isAdminLogged){
-
-      
-      var filetext = fs.readFileSync(req.body.csv, 'utf8');
-      var newPath = __dirname + "/uploads/"+req.body.csv;
-
-          console.log(filetext);
-
-          req.getConnection(function (err, connection) {
-          
-          var parse = Papa.parse(filetext);
-          console.log(parse);
-            var data = {
-                name      : input.name,
-                last_name : input.last_name,
-                phone     : input.phone           
-            };
+        var filetext = fs.readFileSync(req.body.csv, 'utf8');
+        console.log(filetext);
+        var parse = Papa.parse(filetext);
+        parse.data.shift();
+        req.getConnection(function (err, connection) {
             
-            var query = connection.query("INSERT INTO contact set ? ",data, function(err, rows){
+            var query = connection.query("INSERT INTO contact (name, last_name, phone) VALUES ? ",[parse.data], function(err, rows){
       
               if (err)
                   console.log("Error inserting : %s ",err );
              
               res.redirect('/contact');  
-            });       
-
-          });
-   
+            });
+        });
     }
       else res.redirect('/bad_login');
 };

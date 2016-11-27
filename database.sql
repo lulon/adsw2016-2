@@ -2,8 +2,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `idcontact` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `phone` VARCHAR(10) NOT NULL,
-  `to_call` VARCHAR(3) NOT NULL,
+  `phone` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`idcontact`)
 );
 
