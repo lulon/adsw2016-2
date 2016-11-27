@@ -3,10 +3,24 @@ exports.list = function(req, res){
 	if(req.session.isUserLogged){
 		var view = 'user_indx';
 	}
-	 else if(req.session.isAdminLogged){
+	else if(req.session.isAdminLogged){
 		var view = 'project';
 	}
-	if(req.session.isAdminLogged || req.session.isUserLogged){
+
+	if (req.session.isUserLogged){
+		req.getConnection(function(err,connection){
+         
+        	var query = connection.query('SELECT * FROM project WHERE finishdate > NOW()',function(err,rows)
+        	{
+            	if(err)
+            	    console.log("Error Selecting : %s ",err );
+            	res.render(view,{page_title:"Projects",data:rows});
+       		});
+           
+           //console.log(query.sql);
+   	 	});
+	}
+	else if(req.session.isAdminLogged){
      	req.getConnection(function(err,connection){
          
         	var query = connection.query('SELECT * FROM project',function(err,rows)
@@ -19,7 +33,7 @@ exports.list = function(req, res){
            //console.log(query.sql);
    	 	});
   	}
-  else res.redirect('/bad_login');
+  	else res.redirect('/bad_login');
 };
 
 //Vista agregar projectos

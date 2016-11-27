@@ -1,4 +1,37 @@
 //Redirección y consulta de la encuesta
+
+exports.list = function(req, res){	
+  	if(req.session.isAdminLogged){
+	    req.getConnection(function(err,connection){
+	           
+	            var query = connection.query('SELECT * FROM user',function(err,rows)
+	            {
+	                
+	                if(err)
+	                    console.log("Error Selecting : %s ",err );
+	         
+	                res.render('user_list',{page_title:"User Calls",data:rows});
+	                    
+	             });
+	             //console.log(query.sql);
+	        });
+    }
+    else res.redirect('/bad_login');  
+};
+
+exports.stats = function(req, res){
+  if(req.session.isAdminLogged){
+  	req.getConnection(function(err,connection){
+	    var query = connection.query('SELECT * FROM call WHERE iduser = ?',req.params.iduser,function(req,res){
+	      if(err) console.log("Error Selecting : %s ", err);
+	      
+	      //res.render('')
+	    });
+	});
+  }
+    else res.redirect('/bad_login');
+};
+
 exports.start_surveys = function(req, res){
 	if(req.session.isUserLogged){
 

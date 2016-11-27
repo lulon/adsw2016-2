@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 );
 
 CREATE TABLE IF NOT EXISTS `call` (
+  `iduser` INT(11) NOT NULL,
   `idcontact` INT(11) NOT NULL,
   `idquiz` INT(11) NOT NULL,
   `duration` INT(11),
@@ -52,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `call` (
   `status`	VARCHAR(30),
   PRIMARY KEY(`idcontact`,`idquiz`),
   FOREIGN KEY(`idcontact`) REFERENCES contact(idcontact),
-  FOREIGN KEY(`idquiz`) REFERENCES quiz(idquiz)
+  FOREIGN KEY(`idquiz`) REFERENCES quiz(idquiz),
+  FOREING KEY(`iduser`) REFERENCES user(iduser)
   );
   
