@@ -61,7 +61,6 @@ exports.save = function(req,res){
     var Papa = require("babyparse")
     if(isAdminLogged){
         var filetext = fs.readFileSync(req.body.csv, 'utf8');
-        console.log(filetext);
         var parse = Papa.parse(filetext);
         parse.data.shift();
         req.getConnection(function (err, connection) {

@@ -8,6 +8,9 @@ exports.list = function(req, res){
 	}
 
 	if (req.session.isUserLogged){
+		if(req.session.selected_idproject != 'undefined'){
+			req.session.seleceted_idproject = 'undefined';
+		}
 		req.getConnection(function(err,connection){
          
         	var query = connection.query('SELECT * FROM project WHERE finishdate > NOW()',function(err,rows)

@@ -13,6 +13,7 @@ exports.admin_login = function(req, res){
 
 exports.user_logout = function(req, res){
 	req.session.isUserLogged = false;
+	req.session.idUser = 'undefined';
 	req.session.selected_idproject = 'undefined';
 	req.session.selected_quizes = 'undefined';
 	req.session.current_contact = 'undefined';
@@ -45,8 +46,10 @@ exports.user_login_handler = function(req, res){
               
               if(rows.length == 1){
               	req.session.isUserLogged = true;
+              	req.session.idUser = rows[0].iduser;
               	res.redirect('/project');
-              }        });
+              }
+          });
            
            //console.log(query.sql);
       });
