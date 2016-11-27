@@ -53,6 +53,6 @@ CREATE TABLE IF NOT EXISTS `call` (
   PRIMARY KEY(`idcontact`,`idquiz`),
   FOREIGN KEY(`idcontact`) REFERENCES contact(idcontact),
   FOREIGN KEY(`idquiz`) REFERENCES quiz(idquiz),
-  FOREING KEY(`iduser`) REFERENCES user(iduser)
+  FOREIGN KEY(`iduser`) REFERENCES user(iduser)
   );
   

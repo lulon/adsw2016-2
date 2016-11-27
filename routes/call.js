@@ -90,6 +90,7 @@ exports.save = function(req, res){
             {
                 var nowdate = new Date();
                 var data = {
+                	iduser: req.session.idUser,
                     idcontact: req.session.current_idcontact.toString(),
                     idquiz: req.session.selected_quizes[req.session.selected_number].idquiz.toString(),
                     duration: "60", //hay que implementar esto con la grabación
