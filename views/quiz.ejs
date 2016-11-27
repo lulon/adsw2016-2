@@ -1,7 +1,7 @@
 <%- include layouts/admin_header.ejs %>
 		<h1>Quizzes registered</h1>
 		<h4>Here you can create or delete quizzes or enable/disable a quiz, so users can't answer it.</h4> 
-
+		 
             <table class="table">
                 <tr>
                     <th width="50px">No</th>
@@ -9,11 +9,11 @@
                     <th>URL</th>
                     <th width="300px">EDIT</th>
                 </tr>
-
-                <% if(data.length){
-
+                               
+                <% if(data.length){ 
+                                
                  for(var i = 0;i < data.length;i++) { %>
-
+                 
                 <tr>
                     <td><%=(i+1)%></td>
                     <td><%=data[i].name%></td>
