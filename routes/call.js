@@ -10,7 +10,7 @@ exports.list = function(req, res){
 	                if(err)
 	                    console.log("Error Selecting : %s ",err );
 	         
-	                res.render('user_list',{page_title:"User Calls",data:rows});
+	                res.render('call_data',{page_title:"User Calls",data:rows});
 	                    
 	             });
 	             //console.log(query.sql);
@@ -20,15 +20,20 @@ exports.list = function(req, res){
 };
 
 exports.stats = function(req, res){
-  if(req.session.isAdminLogged){
-  	req.getConnection(function(err,connection){
-	    var query = connection.query('SELECT * FROM call WHERE iduser = ?',req.params.iduser,function(req,res){
-	      if(err) console.log("Error Selecting : %s ", err);
-	      
-	      //res.render('')
-	    });
-	});
-  }
+	
+	var	iduser 		= Number(req.body.iduser);
+	var	datestart 	= req.body.datestart;
+	var	datefinish 	= req.body.datefinish;
+	
+  	if(req.session.isAdminLogged){
+	  	req.getConnection(function(err,connection){
+		    var query = connection.query('SELECT * FROM `call` WHERE iduser = ? AND date > CAST(? AS DATE) AND date < CAST(? AS DATE)',[iduser,datestart,datefinish],function(err,rows){
+		      if(err) console.log("Error Selecting : %s ", err);
+
+		      res.render('user_stats',{page_title:"User Stats",data:rows});
+		    });
+		});
+	}
     else res.redirect('/bad_login');
 };
 
