@@ -1,13 +1,13 @@
 <%- include layouts/admin_header.ejs %>
-	<div class="container">
-        <div class="page-data">
+
+        <form method="post" action="/contact/add">
+            <div class="form-group">
+                <label>Import csv file</label>
+                <input  type="file" name="csv" required>
+                <p class="help-block">Note: First row in csv file won't be saved</p>
+            </div>
+            <button class="btn btn-primary" type="submit" name="submit">Import</button>
+        </form>
             
-            <form method="post" action="/contact/add">
-                <input type="file" name="csv">
-                <input type="submit" name="submit">
-            </form>
-            
-        </div>
-    </div>
-        
+
 <%- include layouts/footer.ejs %>

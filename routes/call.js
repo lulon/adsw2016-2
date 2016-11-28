@@ -79,7 +79,16 @@ exports.start_surveys = function(req, res){
 	else res.redirect('/bad_login');
 }
 
-
+exports.quiz_stats = function(req, res) {
+    if(req.session.isAdminLogged){
+        req.getConnection(function(err,connection){
+                if(err) console.log("Error Selecting : %s ", err);
+                //res.render('')
+            });
+        });
+    }
+    else res.redirect('/bad_login');
+}
 exports.save = function(req, res){
 	if(req.session.isUserLogged){
 		var status = req.params.result;
