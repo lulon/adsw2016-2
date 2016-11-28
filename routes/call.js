@@ -82,7 +82,9 @@ exports.start_surveys = function(req, res){
 exports.quiz_stats = function(req, res) {
     if(req.session.isAdminLogged){
         req.getConnection(function(err,connection){
+            connection.query('SELECT * FROM call WHERE idquiz = ? AND status = "success"',req.params.idquiz,function(err,rows){
                 if(err) console.log("Error Selecting : %s ", err);
+				res.render('/quiz_stats',{data: rows});
                 //res.render('')
             });
         });
