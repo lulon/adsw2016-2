@@ -19,6 +19,7 @@
                     <td><%=data[i].name%></td>
                     <td><%=data[i].link%></td>
                     <td><a class="btn btn-danger btn-xs a-inside delete" href="../delete/<%=idproject%>/<%=data[i].idquiz%>">Delete</a>
+                        <a class="btn btn-warning btn-xs a-inside" href="../stats/<%=data[i].idquiz%>">Stats</a>
                     	<%if(data[i].activated){%>
                     		<a class="btn btn-danger btn-xs a-inside delete" href="../disable/<%=idproject%>/<%=data[i].idquiz%>/0">Disable</a>
                    	 <%} else {%>
