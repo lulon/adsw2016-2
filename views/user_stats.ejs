@@ -1,14 +1,32 @@
 <%- include layouts/admin_header.ejs %>
         <h1>Users in system</h1>
             <h4>Here you can see the results of the calls made by User.</h4>
-            <% if(data.length){ 
-                 var total = 0;               
+            <%if(data.length){ 
+                 var success = 0;
+                 var notsuccess = 0;               
                  for(var i = 0;i < data.length;i++) { 
-                 	total = total + 1;
-                 }
+                 	if (data[i].status = 'success')
+                 		success = success + 1;
+                 	else notsuccess = notsuccess + 1;   
+            	}
             }%>
+            	<table class="table">
+                    <tr>
+                        <th>Status</th>
+                        <th>Total Calls</th>
+                    </tr>
+                    <tr>
+                    <tr>
+                    	<td>Success</td>
+                    	<td><%=success%></td>
+                    </tr>
 
-                 <h1><%=total%></h1>
+                    <tr>
+                    	<td>Not success</td>
+                    	<td><%=notsuccess%></td>
+                    </tr>
+                </table>
+                <h1>Total calls: <%=(success + notsuccess)%></h1>
                  
            
      

@@ -27,7 +27,7 @@ exports.stats = function(req, res){
 	
   	if(req.session.isAdminLogged){
 	  	req.getConnection(function(err,connection){
-		    var query = connection.query('SELECT * FROM `call` WHERE iduser = ? AND date_call > CAST(? AS DATE) AND date_call < CAST(? AS DATE)',[iduser,datestart,datefinish],function(err,rows){
+		    var query = connection.query('SELECT * FROM `call` WHERE iduser = ? AND date > CAST(? AS DATE) AND date < CAST(? AS DATE)',[iduser,datestart,datefinish],function(err,rows){
 		      if(err) console.log("Error Selecting : %s ", err);
 
 		      res.render('user_stats',{page_title:"User Stats",data:rows});
