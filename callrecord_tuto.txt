@@ -1,0 +1,7 @@
+1-Instalar AmoltoCallRecorder
+2-Instalar GoogleDrive for Windows
+3-Iniciar sesión en Drive con la cuenta correspondiente
+4-Configurar la sincronización en un solo sentido (Pc->Servidor)(Omitir paso si no sabe como hacerlo)
+5-Al iniciar AmoltoCallRecorder, autorizar la aplicación en Skype
+6-Setear el destino de las grabaciones en la carpeta sincronizada
+7-Setear el formato de nombre de los archivos de grabación según laa base de datos
